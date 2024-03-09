@@ -13,5 +13,5 @@ device_name = "Keychron Keychron K6"
 # Both `tap` and `hold` can expand to multiple output keys.
 
 [[remap]]
-input = ["KEY_LEFTALT", "KEY_LEFTSHIFT"]
+input = ["KEY_LEFTMETA", "KEY_LEFTSHIFT"]
 output = ["KEY_RIGHTALT"]
