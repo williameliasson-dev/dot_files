@@ -61,10 +61,12 @@
         "icon-size": 13,
         "spacing": 10
     },
-    "clock": {
-        "format": "{: %R   %d/%m}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
+	"clock": {
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"format": "{:%F %T}",
+		"format-alt": "{:%F %T}",
+		"interval": 1
+	},
     "backlight": {
         "device": "intel_backlight",
         "format": "{icon} {percent}%",
