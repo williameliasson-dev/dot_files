@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre", -- uncomment for format on save
+    event = "BufWritePre",
     config = function()
       require "configs.conform"
     end,
@@ -35,6 +35,7 @@ return {
       require "configs.lspconfig"
     end,
   },
+
   {
     "williamboman/mason.nvim",
     opts = {
@@ -44,6 +45,10 @@ return {
         "html-lsp",
         "css-lsp",
         "prettier",
+        "typescript-language-server",
+        "eslint-lsp",
+        "js-debug-adapter",
+        "node-debug2-adapter",
         "rust_analyzer",
       },
     },
@@ -62,6 +67,45 @@ return {
         help = true,
       },
     },
+  },
+
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require "configs.dap"
+    end,
+  },
+
+  {
+    "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+
+    config = function()
+      local dap = require "dap"
+      local dapui = require "dapui"
+      require("dapui").setup()
+
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end,
+  },
+
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    config = function()
+      require("nvim-dap-virtual-text").setup()
+    end,
+    requires = { "mfussenegger/nvim-dap" },
   },
 
   {
